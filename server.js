@@ -4,13 +4,30 @@ const path = require('path');
 const PORT = process.env.PORT || 3500;
 const { logger } = require('./middleware/logEvents');
 const cors = require('cors');
+const errorHandler = require('./middleware/errorHandler');
 
 //custom middleware
 app.use(logger);
 
 //third party middleware
 // Cross-Origin Resource Sharing (CORS)
-app.use(cors());
+const whitelist = [
+    'https://yoursite.com',
+    'https://www.google.com',
+    'http://localhost:3500',
+    'http://127.0.0.1:5500',
+];
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 //Built-in middleware for handing url encoded data
 app.use(express.urlencoded({ extended: false }));
 
@@ -62,5 +79,7 @@ app.get('/chain(.html)?', [one, two, three]);
 app.get('*', (req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
