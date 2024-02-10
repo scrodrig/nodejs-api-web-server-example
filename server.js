@@ -3,10 +3,14 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 3500;
 const { logger } = require('./middleware/logEvents');
+const cors = require('cors');
 
 //custom middleware
 app.use(logger);
 
+//third party middleware
+// Cross-Origin Resource Sharing (CORS)
+app.use(cors());
 //Built-in middleware for handing url encoded data
 app.use(express.urlencoded({ extended: false }));
 
