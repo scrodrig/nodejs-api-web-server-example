@@ -1,15 +1,19 @@
 # "Node.js Tutorial - How to Build a Web Server"
 
-✅ [Check out my YouTube Channel with all of my tutorials](https://www.youtube.com/DaveGrayTeachesCode).
+# Node.js Tutorial - How to Build a Web Server
 
-**Description:**
+This repository contains the source code for a Node.js web server tutorial. The tutorial walks you through the process of building a basic web server using Node.js.
 
-This repository shares the code applied during the Youtube tutorial. The tutorial is part of a [Node.js for Beginners Playlist](https://www.youtube.com/playlist?list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw) on my channel.  
+## Prerequisites
 
-[YouTube Tutorial](https://youtu.be/3ZAKY-CDKog) for this repository.
+Before you can run the web server, make sure you have the following installed on your machine:
 
-I suggest completing my [8 hour JavaScript course tutorial video](https://youtu.be/EfAl9bwzVZk) if you are new to Javascript.
+- Node.js (version X.X.X)
+- npm (version X.X.X)
 
-### Academic Honesty
+## Installation
 
-**DO NOT COPY FOR AN ASSIGNMENT** - Avoid plagiargism and adhere to the spirit of this [Academic Honesty Policy](https://www.freecodecamp.org/news/academic-honesty-policy/).
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/scrodrig/nodejs-api-web-server.git
