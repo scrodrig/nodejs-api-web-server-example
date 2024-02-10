@@ -1,7 +1,20 @@
-const PORT = process.env.PORT || 3500;
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path');
+const PORT = process.env.PORT || 3500;
+const { logger } = require('./middleware/logEvents');
+
+//custom middleware
+app.use(logger);
+
+//Built-in middleware for handing url encoded data
+app.use(express.urlencoded({ extended: false }));
+
+//Built-in middleware for json
+app.use(express.json());
+
+//Built-in middleware for serving static files
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('^/$|/index(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
