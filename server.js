@@ -1,7 +1,6 @@
 const PORT = process.env.PORT || 3500;
 const express = require('express');
 const path = require('path');
-const { send } = require('process');
 const app = express();
 
 app.get('^/$|/index(.html)?', (req, res) => {
