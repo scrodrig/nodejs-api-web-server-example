@@ -8,7 +8,7 @@ This repository contains the source code for a Node.js web server tutorial. The 
 
 Before you can run the web server, make sure you have the following installed on your machine:
 
-- Node.js (version X.X.X)
+- Node.js (version 18.18.0)
 - npm (version X.X.X)
 
 ## Installation
