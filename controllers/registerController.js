@@ -14,7 +14,7 @@ const handleNewUser = async (req, res) => {
     if (!user || !pwd) {
         return res.status(400).json({ error: 'Include username and password' });
     }
-    const duplicated = usersDB.users.find((person) => person.user === user);
+    const duplicated = usersDB.users.find((person) => person.username === user);
     if (duplicated) {
         return res.sendStatus(409);
     }
