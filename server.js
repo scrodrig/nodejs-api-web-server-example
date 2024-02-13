@@ -6,6 +6,8 @@ const { logger } = require('./middleware/logEvents');
 const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsOptions');
+const verifyJWT = require('./middleware/verifyJWT');
+const cookieParser = require('cookie-parser');
 //custom middleware
 app.use(logger);
 //third party middleware
@@ -17,12 +19,18 @@ app.use(express.urlencoded({ extended: false }));
 //Built-in middleware for json
 app.use(express.json());
 
+//middleware for parsing cookies
+app.use(cookieParser());
+
 //Built-in middleware for serving static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
+app.use('/refresh', require('./routes/refresh'));
+
+app.use(verifyJWT);//it applies to all the routes below
 app.use('/employees', require('./routes/api/employees'));
 
 app.all('*', (req, res) => {
