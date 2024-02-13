@@ -8,9 +8,11 @@ const errorHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsOptions');
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
+const credentials = require('./middleware/credentials');
 //custom middleware
 app.use(logger);
 //third party middleware
+app.use(credentials);
 // Cross-Origin Resource Sharing (CORS)
 app.use(cors(corsOptions));
 //Built-in middleware for handing url encoded data
@@ -29,6 +31,7 @@ app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logOut'));
 
 app.use(verifyJWT);//it applies to all the routes below
 app.use('/employees', require('./routes/api/employees'));
