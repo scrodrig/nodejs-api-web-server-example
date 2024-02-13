@@ -12,10 +12,10 @@ const getAllEmployees = (req, res) => {
 const createNewEmployee = (req, res) => {
     const newEmployee = {
         id: data.employees[data.employees.length - 1].id + 1 || 1,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
     };
-    if (!newEmployee.firstName || !newEmployee.lastName) {
+    if (!newEmployee.firstname || !newEmployee.lastname) {
         return res.status(400).json({ error: 'Include first and last name' });
     }
     data.setEmployees([...data.employees, newEmployee]);
@@ -31,8 +31,8 @@ const updateEmployee = (req, res) => {
             .status(404)
             .json({ message: `Employee ID ${req.body.id} not found` });
     }
-    if (req.body.firstName) employee.firstName = req.body.firstName;
-    if (req.body.lastName) employee.lastName = req.body.lastName;
+    if (req.body.firstname) employee.firstname = req.body.firstname;
+    if (req.body.lastname) employee.lastname = req.body.lastname;
     const filteredArray = data.employees.filter(
         (emp) => emp.id !== parseInt(req.body.id),
     );
