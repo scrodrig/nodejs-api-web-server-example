@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyJWT = (req, res, next) => {
-    const authHeader = req.headers['authorization']; //check for dot notation
-    if (!authHeader) {
-        return res.status(401).json({ error: 'Unauthorized' });
+    const authHeader = req.headers.authorization || req.headers.Authorization; //check for dot notation
+    if (!authHeader?.startsWith('Bearer ')) {
+        return res.sendStatus(401);
     }
     console.log(authHeader); //Bearer token
 
@@ -14,7 +14,8 @@ const verifyJWT = (req, res, next) => {
         if (err) {
             return res.status(403).json({ error: 'Forbidden' }); //Invalid token
         }
-        req.user = decoded.username;
+        req.user = decoded.UserInfo.username;
+        req.roles = decoded.UserInfo.roles;
         next();
     });
 };
