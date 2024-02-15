@@ -4,8 +4,6 @@ const verifyRoles = (...allowedRoles) => {
             return res.sendStatus(401);
         }
         const rolesArray = [...allowedRoles];
-        console.log('🚀 ~ return ~ rolesArray:', rolesArray);
-        console.log('🚀 ~ return ~ req.roles:', req.roles);
         const result = req.roles
             .map((role) => {
                 return rolesArray.includes(role);

@@ -53,7 +53,7 @@ const handleLogin = async (req, res) => {
         );
         res.cookie('jwt', refreshToken, {
             httpOnly: true,
-            // sameSite: 'None',
+            // sameSite: 'None', //This is for the cookie to be sent in a cross-origin request for develoopment
             // secure: true,
             maxAge: 24 * 60 * 60 * 1000,
         });
