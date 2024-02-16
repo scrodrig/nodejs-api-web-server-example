@@ -5,8 +5,7 @@ const usersDB = {
     },
 };
 
-const fsPromises = require('fs').promises;
-const path = require('path');
+const User = require('../model/User');
 const bcrypt = require('bcrypt');
 
 const handleNewUser = async (req, res) => {
@@ -14,7 +13,7 @@ const handleNewUser = async (req, res) => {
     if (!user || !pwd) {
         return res.status(400).json({ error: 'Include username and password' });
     }
-    const duplicated = usersDB.users.find((person) => person.username === user);
+    const duplicated = await User.findOne({ username: user }).exec();
     if (duplicated) {
         return res.sendStatus(409);
     }
@@ -22,19 +21,11 @@ const handleNewUser = async (req, res) => {
     try {
         const hashedPwd = await bcrypt.hash(pwd, 10);
         //Store the new user in the database
-        const newUser = {
+        await User.create({
             username: user,
             password: hashedPwd,
-            roles: {
-                User: '2001',
-            },
-        };
-        usersDB.setUsers([...usersDB.users, newUser]);
+        });
 
-        await fsPromises.writeFile(
-            path.join(__dirname, '..', 'model', 'users.json'),
-            JSON.stringify(usersDB.users),
-        );
         res.status(201).json({ success: `New user ${user} created` });
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });
