@@ -17,3 +17,9 @@ Before you can run the web server, make sure you have the following installed on
 
    ```bash
    git clone https://github.com/scrodrig/nodejs-api-web-server.git
+
+
+## Deploy in Glitch
+** Click the button **
+
+[<img src="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg" width="163px" />](https://glitch.com/edit/#!/import/github/scrodrig/nodejs-api-web-server-example)
