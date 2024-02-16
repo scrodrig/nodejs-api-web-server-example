@@ -1,10 +1,3 @@
-const usersDB = {
-    users: require('../model/users'),
-    setUsers: (payload) => {
-        usersDB.users = payload;
-    },
-};
-
 const User = require('../model/User');
 const bcrypt = require('bcrypt');
 
